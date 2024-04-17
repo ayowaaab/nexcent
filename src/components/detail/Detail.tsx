@@ -5,7 +5,7 @@ interface Props {
 }
 const Detail = ({ description, title, img }: Props) => {
   return (
-    <div className="flex justify-between items-center my-20">
+    <div className="flex justify-between items-center my-20 w-[95%] lg:w-[80%] mx-auto">
       <img className="w-1/2 hidden md:block" src={"/hero/" + img} alt="Detail-img" />
       <div className="flex flex-col gap-5 md:gap-10 items-start">
         <h1 className="md:text-4xl text-2xl font-medium text-secondary">{title}</h1>

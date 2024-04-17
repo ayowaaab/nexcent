@@ -10,6 +10,7 @@ export default {
       black: "#263238",
       black: "#263238",
       grey: "#717171",
+      dgrey:"#4D4D4D",
       silver:"#F5F7FA",
     },
     extend: {},

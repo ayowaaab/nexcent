@@ -7,14 +7,14 @@ const App = () => {
   return (
     <>
       <div className="bg-silver">
-        <div className="w-[95%] lg:w-[80%] mx-auto  ">
+        <div className="w-[95%] lg:w-[80%] mx-auto ">
           <NavBar />
           <Hero />
         </div>
       </div>
-      <div className="w-[95%] lg:w-[80%] mx-auto  ">
-        <MainSection />
-      </div>
+
+      <MainSection />
+
       <Footer />
     </>
   );
