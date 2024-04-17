@@ -56,7 +56,7 @@ const NavBar = () => {
       />
       <header
         className={
-          "py-5 md:hidden bg-primary fixed top-0 left-0 p-5 pt-16 h-[100vh] transition translate-x-[-200%] " +
+          "py-5 md:hidden w-1/2 bg-primary fixed top-0 left-0 p-5 pt-16 h-[100vh] transition translate-x-[-200%] " +
           (!visible ? "translate-x-[-200%]" : "translate-x-[0]")
         }
       >
