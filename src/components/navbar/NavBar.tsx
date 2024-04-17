@@ -1,20 +1,91 @@
+import { useState } from "react";
+
 const NavBar = () => {
+  const [visible, setVisible] = useState(false);
+
+  const handelVisible = () => {
+    setVisible(!visible);
+  };
   return (
     <>
-      <header className="py-5">
-        <nav className="flex justify-between items-center">
-          <img src="/nav/Logo.png" alt="logo" />
-          <ul className="flex gap-9">
-            <li>Home</li>
-            <li>Service</li>
-            <li>Feature</li>
-            <li>Product</li>
-            <li>Testimonial</li>
-            <li>FAQ</li>
+      <header className="py-5 hidden md:block">
+        <nav className="flex justify-between gap-2 items-center ">
+          <img className="object-cover" src="/nav/Logo.png" alt="logo" />
+          <ul className="flex sm:gap-5">
+            <a href="#" className="text-xs md:text-[16px]">
+              Home
+            </a>
+            <a href="#" className="text-xs md:text-[16px]">
+              Service
+            </a>
+            <a href="#" className="text-xs md:text-[16px]">
+              Feature
+            </a>
+            <a href="#" className="text-xs md:text-[16px]">
+              Product
+            </a>
+            <a href="#" className="text-xs md:text-[16px]">
+              Testimonial
+            </a>
+            <a href="#" className="text-xs md:text-[16px]">
+              FAQ
+            </a>
           </ul>
           <ul className="flex gap-3 items-center">
-            <button className="text-primary">Login</button>
-            <button className="bg-primary px-5 py-2 rounded-md text-white raduis">Sign up</button>
+            <button className="text-primary  hover:text-info ">Login</button>
+            <button className="bg-primary hover:bg-info transition px-5 py-2 rounded-md text-white raduis whitespace-nowrap">
+              Sign up
+            </button>
+          </ul>
+        </nav>
+      </header>
+      {/* Header Mobile */}
+      <img
+        className="object-cover w-[30px] md:hidden z-10 top-5 fixed"
+        src={"/nav/" + (visible ? "burger.png" : "Close.png")}
+        style={
+          !visible
+            ? {
+                filter:
+                  "brightness(0) saturate(100%) invert(84%) sepia(87%) saturate(0%) hue-rotate(333deg) brightness(108%) contrast(103%)",
+              }
+            : { backdropFilter: "-moz-initial" }
+        }
+        alt="logo"
+        onClick={handelVisible}
+      />
+      <header
+        className={
+          "py-5 md:hidden bg-primary fixed top-0 left-0 p-5 pt-16 h-[100vh] transition " +
+          (visible ? "translate-x-[-200%]" : "translate-x-[0]")
+        }
+      >
+        <nav className="flex flex-col justify-between gap-2 items-start">
+          <ul className="flex flex-col gap-5 mt-5">
+            <a href="#" className="text-white text-xs md:text-[16px]">
+              Home
+            </a>
+            <a href="#" className="text-white text-xs md:text-[16px]">
+              Service
+            </a>
+            <a href="#" className="text-white text-xs md:text-[16px]">
+              Feature
+            </a>
+            <a href="#" className="text-white text-xs md:text-[16px]">
+              Product
+            </a>
+            <a href="#" className="text-white text-xs md:text-[16px]">
+              Testimonial
+            </a>
+            <a href="#" className="text-white text-xs md:text-[16px]">
+              FAQ
+            </a>
+            <div className="flex gap-3 items-center mt-5">
+              <button className="text-white">Login</button>
+              <button className="bg-white px-5 py-2 rounded-md text-primary raduis whitespace-nowrap">
+                Sign up
+              </button>
+            </div>
           </ul>
         </nav>
       </header>
