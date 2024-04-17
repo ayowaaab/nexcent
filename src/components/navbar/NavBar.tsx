@@ -41,10 +41,10 @@ const NavBar = () => {
       </header>
       {/* Header Mobile */}
       <img
-        className="object-cover w-[30px] md:hidden z-10 top-5 fixed"
-        src={"/nav/" + (visible ? "burger.png" : "Close.png")}
+        className="object-cover w-[30px] md:hidden z-10 top-5 fixed cursor-pointer"
+        src={"/nav/" + (!visible ? "burger.png" : "Close.png")}
         style={
-          !visible
+          visible
             ? {
                 filter:
                   "brightness(0) saturate(100%) invert(84%) sepia(87%) saturate(0%) hue-rotate(333deg) brightness(108%) contrast(103%)",
@@ -56,8 +56,8 @@ const NavBar = () => {
       />
       <header
         className={
-          "py-5 md:hidden bg-primary fixed top-0 left-0 p-5 pt-16 h-[100vh] transition " +
-          (visible ? "translate-x-[-200%]" : "translate-x-[0]")
+          "py-5 md:hidden bg-primary fixed top-0 left-0 p-5 pt-16 h-[100vh] transition translate-x-[-200%] " +
+          (!visible ? "translate-x-[-200%]" : "translate-x-[0]")
         }
       >
         <nav className="flex flex-col justify-between gap-2 items-start">
