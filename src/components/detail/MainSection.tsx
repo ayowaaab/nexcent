@@ -6,7 +6,7 @@ import Reach from "./Reach";
 const MainSection = () => {
   return (
     <>
-      <div className="my-10 w-[95%] lg:w-[80%] mx-auto">
+      <div className="my-24 w-[95%] lg:w-[80%] mx-auto">
         <h2 className="text-[36px] text-center font-medium text-secondary my-5">
           Our Client
         </h2>
@@ -75,10 +75,10 @@ const MainSection = () => {
           img={details[0].img}
           title={details[0].title}
         />
-        <div className="flex text-center md:text-start gap-10 md:flex-row flex-col items-center justify-between bg-silver px-[10%] md:py-16 py-5">
-          <div className="flex flex-col">
+        <div className="flex text-center md:text-start gap-10 md:flex-row flex-col items-center justify-between bg-silver px-[10%] py-16">
+          <div className="flex flex-col gap-8">
             <h1 className="text-3xl font-medium text-black">
-              Helping a local
+              Helping a local 
               <br />
               <span className="text-primary">business reinvent itself</span>
             </h1>
@@ -86,7 +86,7 @@ const MainSection = () => {
               We reached here with our hard work and dedication
             </p>
           </div>
-          <div className="grid gap-x-10 gap-y-3 md:grid-cols-2 grid-cols-1">
+          <div className="grid gap-x-10 gap-y-3 grid-cols-2">
             <Reach
               img="/mainSection/membre.png"
               title="Members"
