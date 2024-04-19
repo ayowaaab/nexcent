@@ -7,7 +7,6 @@ import gsap, { ScrollTrigger } from "gsap/all";
 
 const MainSection = () => {
   const app = useRef(null);
-  const tl = useRef<GSAPTimeline>();
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
