@@ -86,7 +86,7 @@ const MainSection = () => {
               We reached here with our hard work and dedication
             </p>
           </div>
-          <div className="grid gap-x-10 gap-y-3 grid-cols-2">
+          <div className="grid gap-x-10 gap-y-3 grid-cols-1 sm:grid-cols-2">
             <Reach
               img="/mainSection/membre.png"
               title="Members"

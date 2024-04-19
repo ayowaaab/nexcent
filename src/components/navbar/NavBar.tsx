@@ -1,14 +1,26 @@
-import { useState } from "react";
+import gsap from "gsap/all";
+import { useLayoutEffect, useRef, useState } from "react";
 
 const NavBar = () => {
   const [visible, setVisible] = useState(false);
-
-  const handelVisible = () => {
-    setVisible(!visible);
-  };
+  const app = useRef(null);
+  const tl = useRef<GSAPTimeline>();
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      tl.current = gsap.timeline();
+      tl.current
+        .from(app.current, {
+          x: -50,
+          duration:.4,
+          opacity: 0,
+        });
+       
+    }, app);
+    return () => ctx.revert();
+  }, [app]);
   return (
     <>
-      <header className="py-5 hidden md:block">
+      <header ref={app} className="py-5 hidden md:block">
         <nav className="flex justify-between gap-2 items-center ">
           <img className="object-cover" src="/nav/Logo.png" alt="logo" />
           <ul className="flex sm:gap-5">
@@ -52,7 +64,7 @@ const NavBar = () => {
             : { backdropFilter: "-moz-initial" }
         }
         alt="logo"
-        onClick={handelVisible}
+        onClick={() => setVisible(!visible)}
       />
       <header
         className={
