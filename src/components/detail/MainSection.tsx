@@ -1,19 +1,92 @@
+import { useLayoutEffect, useRef } from "react";
 import { cards, details } from "../../utils/db";
 import { Card, ReadMoreCard } from "./Cards";
 import Detail from "./Detail";
 import Reach from "./Reach";
+import gsap, { ScrollTrigger } from "gsap/all";
 
 const MainSection = () => {
+  const app = useRef(null);
+  const tl = useRef<GSAPTimeline>();
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      gsap.from(["#client"], {
+        scrollTrigger: {
+          trigger: "#client",
+          start: "top bottom-=20%",
+          end: "bottom bottom-=20%",
+          scrub: 1,
+        },
+        opacity: 0,
+        y: 50,
+      });
+      gsap.from(["#all-client"], {
+        scrollTrigger: {
+          trigger: "#all-client",
+          start: "top bottom-=20%",
+          end: "bottom bottom-=20%",
+          scrub: 1,
+        },
+        opacity: 0,
+        x: -50,
+      });
+      gsap.from(["#system h2", "#system p", "#system div"], {
+        scrollTrigger: {
+          trigger: "#system",
+          start: "top center",
+          end: "center bottom-=30%",
+          scrub: 1,
+        },
+        opacity: 0,
+        x: -50,
+      });
+      gsap.from(["#details #detail"], {
+        scrollTrigger: {
+          trigger: "#detail#detail",
+          start: "top center",
+          end: "center bottom-=30%",
+          scrub: 1,
+        },
+        opacity: 0,
+        y: 50,
+      });
+      gsap.from(["#before-reach h1", "#before-reach p"], {
+        scrollTrigger: {
+          trigger: "#reach",
+          start: "top center+=20%",
+          end: "center center+=20%",
+          scrub: 1,
+        },
+        y: 50,
+        opacity: 0,
+      });
+      gsap.from(["#reach #number"], {
+        scrollTrigger: {
+          trigger: "#reach",
+          start: "top center+=20%",
+          end: "center center+=20%",
+          scrub: 1,
+        },
+        scale: 0.3,
+      });
+    }, app);
+    return () => ctx.revert();
+  }, [app]);
   return (
-    <>
-      <div className="my-24 w-[95%] lg:w-[80%] mx-auto">
+    <div ref={app}>
+      <div id="client" className="my-24 w-[95%] lg:w-[80%] mx-auto">
         <h2 className="text-[36px] text-center font-medium text-secondary my-5">
           Our Client
         </h2>
         <p className="text-lg text-center text-grey mb-5">
           We have been working with some Fortune 500+ clients
         </p>
-        <div className="flex items-center justify-center md:justify-between mt-14 sm:w-full gap-5 flex-wrap w-1/2 mx-auto">
+        <div
+          id="all-client"
+          className="flex items-center justify-center md:justify-between mt-14 sm:w-full gap-5 flex-wrap w-1/2 mx-auto"
+        >
           <img
             className="w-[70px] md:w-[50px]"
             src="/hero/client-1.png"
@@ -51,7 +124,7 @@ const MainSection = () => {
           />
         </div>
       </div>
-      <div className="my-20 w-[95%] lg:w-[80%] mx-auto">
+      <div id="system" className="my-20 w-[95%] lg:w-[80%] mx-auto">
         <h2 className="w-full lg:w-1/2 sm:w-2/3 md:w-2/3 mx-auto text-[36px] text-center text-secondary font-medium my-5">
           Manage your entire community in a single system
         </h2>
@@ -69,16 +142,19 @@ const MainSection = () => {
           ))}
         </div>
       </div>
-      <div>
+      <div id="details">
         <Detail
           description={details[0].description}
           img={details[0].img}
           title={details[0].title}
         />
-        <div className="flex text-center md:text-start gap-10 md:flex-row flex-col items-center justify-between bg-silver px-[10%] py-16">
+        <div
+          id="before-reach"
+          className="flex text-center md:text-start gap-10 md:flex-row flex-col items-center justify-between bg-silver px-[10%] py-16"
+        >
           <div className="flex flex-col gap-8">
             <h1 className="text-3xl font-medium text-black">
-              Helping a local 
+              Helping a local
               <br />
               <span className="text-primary">business reinvent itself</span>
             </h1>
@@ -86,7 +162,10 @@ const MainSection = () => {
               We reached here with our hard work and dedication
             </p>
           </div>
-          <div className="grid gap-x-10 gap-y-3 grid-cols-1 sm:grid-cols-2">
+          <div
+            id="reach"
+            className="grid gap-x-10 gap-y-3 grid-cols-1 sm:grid-cols-2"
+          >
             <Reach
               img="/mainSection/membre.png"
               title="Members"
@@ -142,12 +221,36 @@ const MainSection = () => {
             </div>
             <div className="flex flex-col lg:flex-row justify-between gap-2">
               <div className="grid grid-cols-6 gap-5 md:mb-0 mb-5">
-                <img className="w-[32px] md:w-[50px]" src="/hero/client-1.png" alt="img" />
-                <img className="w-[32px] md:w-[50px]" src="/hero/client-2.png" alt="img" />
-                <img className="w-[32px] md:w-[50px]" src="/hero/client-3.png" alt="img" />
-                <img className="w-[32px] md:w-[50px]" src="/hero/client-4.png" alt="img" />
-                <img className="w-[32px] md:w-[50px]" src="/hero/client-5.png" alt="img" />
-                <img className="w-[32px] md:w-[50px]" src="/hero/client-6.png" alt="img" />
+                <img
+                  className="w-[32px] md:w-[50px]"
+                  src="/hero/client-1.png"
+                  alt="img"
+                />
+                <img
+                  className="w-[32px] md:w-[50px]"
+                  src="/hero/client-2.png"
+                  alt="img"
+                />
+                <img
+                  className="w-[32px] md:w-[50px]"
+                  src="/hero/client-3.png"
+                  alt="img"
+                />
+                <img
+                  className="w-[32px] md:w-[50px]"
+                  src="/hero/client-4.png"
+                  alt="img"
+                />
+                <img
+                  className="w-[32px] md:w-[50px]"
+                  src="/hero/client-5.png"
+                  alt="img"
+                />
+                <img
+                  className="w-[32px] md:w-[50px]"
+                  src="/hero/client-6.png"
+                  alt="img"
+                />
               </div>
               <button className="text-primary font-medium whitespace-nowrap">
                 Meet all customers →
@@ -180,7 +283,7 @@ const MainSection = () => {
           Get a Demo →
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
